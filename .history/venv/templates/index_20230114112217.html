@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aritzia</title>
+</head>
+<body>
+    <h3>1) Upload a photo of you in your favourite outfit.</h3>
+    <form method='POST' enctype='multipart/form-data'>
+        {{form.hidden_tag()}}
+        <div class=""row justify-content-center>
+            <div class="col-auto">
+                {{form.photo(class="form-control")}}
+            </div>
+            <div class="col-auto">
+                {{form.submit(class="btn btn-success")}}
+            </div>
+    </form>
+    {% if file_url %}
+        <div class="mt-5">
+            <img src="{{file_url}}" alt="">
+        </div>
+    {% endif %}
+
+    <h3>2) Upload up to four images of styles you like.</h3>
+    <form method="post" action="/" enctype="multipart/form-data">
+        <dl>
+            <p>
+                <input type="file" name="files[]" multiple="true" autocomplete="off" required>
+            </p>
+        </dl>
+        <p>
+            <input type="submit" id="form2-submit" name="form2-submit" value="Submit form2">
+        </p>
+    </form>
+    {% if filenames %}
+        {% for filename in filenames %}
+            <div style="padding:20px;float:left;">
+                <img width="500" src="{{ url_for('display_images', filename=filename) }}"> 
+            </div>
+        {% endfor %}
+    {% endif %}
+</body>
+</html>

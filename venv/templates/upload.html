@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='style/upload.css') }}">
+    <title>Find Your Style</title>
+</head>
+
+<body>
+    <div class="header">
+        <div class="inner_header">
+            <div class="title_container">
+                <h1>Free Shipping on all orders over $50. Shop Now
+                </h1>
+            </div>
+        </div>
+        <ul class="navigation">
+            <a>
+                <li> Sale</li>
+            </a>
+            <a>
+                <li> New</li>
+            </a>
+            <a>
+                <li> Clothing</li>
+            </a>
+            <a>
+                <li> Back In</li>
+            </a>
+            <a>
+                <li> Brands</li>
+            </a>
+            <a>
+                <li> Stories</li>
+            </a>
+            <a>
+                <li> Activewear</li>
+            </a>
+            <a>
+                <li> The Super Puff™</li>
+            </a>
+            <a>
+                <li> Find Your Style</li>
+            </a>
+        </ul>
+    </div>
+    <div class="logo">
+        <img src="{{ url_for('static',filename='images/Aritzia-Logo.png') }}" height="80" />
+    </div>
+    <img class="sign" src="{{ url_for('static',filename='images/logos.png') }}" height="56">
+    <p></p>
+    <br>
+    <div>
+        <h2 class="slogan">
+            TripleIStyle - Feel confident in a new style by merging it with your current one.
+Get inspired, get innovated, get inventive, get Aritzia.
+        </h2>
+    </div>
+    <br>
+    <div class="upload" style="padding:20px;">
+        <br>
+        <h3>1. Upload your own image and up to three images of the style you want to emulate.</h3>
+        <p>
+            {% with messages = get_flashed_messages() %}
+            {% if messages %}
+        <ul class=flashes>
+            {% for message in messages %}
+            <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        {% endwith %}
+        </p>
+        <form method="post" action="/" enctype="multipart/form-data">
+            <dl>
+                <p>
+                    <input type="file" name="files[]" multiple="true" autocomplete="off" required>
+                </p>
+            </dl>
+            <p>
+                <input type="submit" value="Submit">
+            </p>
+        </form>
+    </div>
+    <div class="wrapped">
+        <div>
+            {% if filenames %}
+            {% for filename in filenames %}
+            <div style="padding:20px;float:left;">
+                <img width="180" height="250" src="{{ url_for('display_image', filename=filename) }}">
+            </div>
+            {% endfor %}
+            {% endif %}
+        </div>
+        <div style="padding:20px;" class="recommendations">
+            <h3>2. Browse through our recommendations.</h3>
+            <!-- CALL CODE OF RECOMMENDATIONS AND SHOW IMAGES HERE -->
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,10 @@
+body {
+    background-color: lightblue;
+}
+
+.header {
+    width: 100%;
+    height: 40px;
+    display: block;
+    background-color: #101010;
+}
